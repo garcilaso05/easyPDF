@@ -1,0 +1,7 @@
+# Dependencias mínimas requeridas por easyPDF
+PyMuPDF
+Pillow
+
+# Nota: "docx2pdf" se usa condicionalmente en el código para convertir .docx a PDF (principalmente Windows).
+# Si trabajas en Windows y necesitas esa funcionalidad, instala también:
+# docx2pdf
