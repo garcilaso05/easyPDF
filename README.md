@@ -1,4 +1,4 @@
-# 📄 easyPDF
+# easyPDF
 
 **easyPDF** es una aplicación de escritorio profesional para edición de PDFs que agrupa múltiples funcionalidades de herramientas como iLovePDF en un solo programa, **sin límites** y sin necesidad de descargar el PDF para cambiar de herramienta.
 
@@ -6,34 +6,34 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)
 
-## ✨ Características Principales
+## Características Principales
 
-### 📑 Gestión de PDFs
+### Gestión de PDFs
 - **Cargar y guardar** documentos PDF
 - **Fusionar múltiples PDFs** en un solo documento
 - **Añadir imágenes** (JPG, PNG, etc.) como nuevas páginas
 - **Importar documentos** de otros formatos
 
-### 🔖 Marcadores (Bookmarks)
+### Marcadores (Bookmarks)
 - Crear, editar y eliminar marcadores
 - Jerarquía multinivel con sangría visual
 - Visualización de marcadores por página
 - Normalización automática de jerarquías
 
-### 🔀 Reordenamiento de Páginas
+### Reordenamiento de Páginas
 - Modo interactivo para reordenar páginas
 - Vista de miniaturas (thumbnails)
 - Mover páginas arriba/abajo
 - Previsualización en tiempo real
 
-### ✏️ Edición de Páginas
+### Edición de Páginas
 - **Rotar páginas** 90° a la izquierda o derecha
 - **Redimensionar páginas** con escala personalizada
 - **Ajustar márgenes** (superior, inferior, izquierdo, derecho)
 - **Convertir a blanco y negro** (escala de grises)
 - Vista previa lado a lado (original vs. resultado)
 
-### 🎨 Interfaz Profesional
+### Interfaz Profesional
 - Tema oscuro moderno
 - Distribución en 3 paneles:
   - **Panel izquierdo**: Lista de páginas con miniaturas
@@ -42,7 +42,7 @@
 - Controles intuitivos con iconos
 - Zoom en previsualización
 
-## 🚀 Instalación
+## Instalación
 
 ### Requisitos Previos
 - Python 3.8 o superior
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 - **Pillow (PIL)**: Para procesamiento de imágenes
 - **tkinter**: Para la interfaz gráfica (incluido en Python estándar)
 
-## 💻 Uso
+## Uso
 
 ### Iniciar la Aplicación
 
@@ -77,7 +77,7 @@ python main.py
 ### Flujo de Trabajo Básico
 
 1. **Cargar un PDF**
-   - Haz clic en `📂 Cargar` para abrir un documento PDF
+   - Haz clic en `Cargar` para abrir un documento PDF
    - Las páginas se mostrarán como miniaturas en el panel izquierdo
 
 2. **Editar Marcadores**
@@ -89,12 +89,12 @@ python main.py
      - Ajustar niveles de jerarquía
 
 3. **Reordenar Páginas**
-   - Activa el modo `🔀 Ordenar`
+   - Activa el modo `Ordenar`
    - Selecciona páginas y usa los botones ⬆️ / ⬇️ para moverlas
    - Desactiva el modo para aplicar los cambios
 
 4. **Editar Páginas Individuales**
-   - Activa el modo `✏️ Editar`
+   - Activa el modo `Editar`
    - Selecciona una página
    - Aplica transformaciones:
      - Rotar con botones ↪️ / ↩️
@@ -104,16 +104,16 @@ python main.py
    - Previsualiza los cambios antes de aplicarlos
 
 5. **Fusionar Contenido**
-   - `📑 PDFs`: Añadir otros documentos PDF
-   - `🖼️ Imágenes`: Insertar imágenes como páginas
-   - `📝 Docs`: Importar documentos de otros formatos
+   - `PDFs`: Añadir otros documentos PDF
+   - `Imágenes`: Insertar imágenes como páginas
+   - `Docs`: Importar documentos de otros formatos
 
 6. **Guardar el Resultado**
-   - Haz clic en `💾 Guardar`
+   - Haz clic en `Guardar`
    - Elige la ubicación y nombre del archivo
    - Todos los cambios se aplicarán al guardar
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 easyPDF/
@@ -133,32 +133,18 @@ easyPDF/
     └── styles.py          # Tema y estilos visuales
 ```
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Python**: Lenguaje de programación principal
 - **Tkinter**: Framework para interfaz gráfica (GUI)
 - **PyMuPDF (fitz)**: Librería para manipulación de PDFs
 - **Pillow (PIL)**: Procesamiento y manipulación de imágenes
 
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas mejorar easyPDF:
-
-1. Haz un fork del proyecto
-2. Crea una rama para tu característica (`git checkout -b feature/NuevaCaracteristica`)
-3. Commit tus cambios (`git commit -m 'Añadir nueva característica'`)
-4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abre un Pull Request
-
-## 📝 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-## 📧 Contacto
-
-Para reportar bugs, sugerencias o preguntas, abre un issue en el repositorio del proyecto.
-
-## 🎯 Roadmap / Futuras Características
+## Roadmap / Futuras Características
 
 - [ ] Extracción de páginas
 - [ ] Dividir PDF en múltiples archivos
@@ -170,4 +156,4 @@ Para reportar bugs, sugerencias o preguntas, abre un issue en el repositorio del
 
 ---
 
-**Desarrollado con ❤️ para simplificar el trabajo con PDFs**
+**Desarrollado para simplificar el trabajo con PDFs**
