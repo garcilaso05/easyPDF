@@ -154,6 +154,16 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 - [ ] OCR (reconocimiento de texto)
 - [ ] Firma digital
 
+## Fotos
+
+<img width="1074" height="700" alt="260305_14h59m19s_screenshot" src="https://github.com/user-attachments/assets/53c6d241-7254-4ab3-b436-c53a040e2091" />
+
+<img width="1074" height="700" alt="260305_15h00m41s_screenshot" src="https://github.com/user-attachments/assets/bc1296fd-d72b-4ef7-a545-5431397aaffc" />
+
+<img width="895" height="689" alt="260305_15h02m27s_screenshot" src="https://github.com/user-attachments/assets/2186bc6d-6a07-4371-875e-3d64b05b653f" />
+
+
+
 ---
 
 **Desarrollado para simplificar el trabajo con PDFs**
