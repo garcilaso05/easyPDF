@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 import fitz  # PyMuPDF
 from tkinter import filedialog, messagebox
+from logic.toc_generator import TOCGenerator
 
 
 class PDFHandler:
@@ -15,13 +16,13 @@ class PDFHandler:
         self.doc = None
 
     def load(self):
-        """Carga un archivo PDF y retorna el documento y su TOC"""
+        """Carga un archivo PDF y retorna el documento y su TOC (limpiando páginas de índice previas)"""
         path = filedialog.askopenfilename(filetypes=[("PDF", "*.pdf")])
         if not path:
             return None, None
 
         self.doc = fitz.open(path)
-        toc = self.doc.get_toc()
+        self.doc, toc, _ = TOCGenerator.clean_doc_and_toc(self.doc)
         return self.doc, toc
 
     def merge(self, current_doc, current_toc, current_page_order):
@@ -45,6 +46,7 @@ class PDFHandler:
         """
         try:
             new_doc = fitz.open(path)
+            new_doc, _, _ = TOCGenerator.clean_doc_and_toc(new_doc)
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo abrir el PDF:\n{e}")
             return None
@@ -128,8 +130,11 @@ class PDFHandler:
 
         return None
 
-    def save(self, doc, toc):
-        """Guarda el PDF con el TOC actualizado"""
+    def save(self, doc, toc, toc_options=None):
+        """
+        Guarda el PDF con el TOC actualizado y opcionalmente una página de índice al inicio.
+        toc_options: dict con {'include_toc': bool, 'title': str, 'subtitle': str} o None
+        """
         if not doc:
             messagebox.showwarning("Aviso", "No hay ningún PDF cargado")
             return False
@@ -141,11 +146,42 @@ class PDFHandler:
             return False
 
         out = filedialog.asksaveasfilename(defaultextension=".pdf", filetypes=[("PDF", "*.pdf")])
-        if out:
+        if not out:
+            return False
+
+        include_toc = toc_options and toc_options.get('include_toc', False) and len(toc) > 0
+        added_toc_pages = 0
+
+        try:
+            if include_toc:
+                title = toc_options.get('title', 'Índice')
+                subtitle = toc_options.get('subtitle', '')
+
+                # Generar e insertar páginas de índice al inicio
+                added_toc_pages = TOCGenerator.generate_toc_pages(doc, toc, title=title, subtitle=subtitle)
+
+                # Desplazar marcadores en el PDF para que sigan apuntando a las páginas correctas
+                shifted_toc = [[lvl, t, p + added_toc_pages] for lvl, t, p in toc]
+                doc.set_toc(shifted_toc)
+
+            # Guardar el documento final en disco
             doc.save(out)
             messagebox.showinfo("OK", "PDF guardado correctamente")
             return True
-        return False
+
+        except Exception as e:
+            messagebox.showerror("Error", f"Error al guardar el PDF:\n{e}")
+            return False
+
+        finally:
+            # Restaurar el estado del documento en memoria si se insertó el índice temporalmente
+            if added_toc_pages > 0:
+                for _ in range(added_toc_pages):
+                    doc.delete_page(0)
+                try:
+                    doc.set_toc(toc)
+                except Exception:
+                    pass
 
     def get_page_pixmap(self, doc, page_num, scale=1.0):
         """Obtiene el pixmap de una página con escala"""

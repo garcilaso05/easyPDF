@@ -7,6 +7,7 @@ from tkinter import ttk, messagebox, filedialog
 from PIL import Image, ImageTk
 
 from ui.panels import build_left_panel, build_center_panel, build_right_panel
+from ui.dialogs import SaveTOCDialog
 from ui.styles import (
     COLORS, FONTS, apply_theme,
     create_styled_button, create_styled_frame, create_styled_checkbutton,
@@ -127,7 +128,7 @@ class PDFEditorApp:
         self.page_bookmarks_list.delete(0, tk.END)
 
     def save_pdf(self):
-        """Guarda el PDF"""
+        """Guarda el PDF con opciones de índice"""
         if not self.doc:
             messagebox.showwarning("Aviso", "No hay ningún PDF cargado")
             return
@@ -147,8 +148,15 @@ class PDFEditorApp:
         # Normalizar jerarquía
         normalized_toc = self.bookmark_manager.normalize_hierarchy()
 
-        # Guardar
-        if self.pdf_handler.save(self.doc, normalized_toc):
+        # Diálogo de opciones de guardado (incluir índice, título, subtítulo)
+        has_bookmarks = len(normalized_toc) > 0
+        dialog = SaveTOCDialog(self.root, has_bookmarks=has_bookmarks)
+        if dialog.result is None:
+            # El usuario canceló
+            return
+
+        # Guardar con las opciones elegidas
+        if self.pdf_handler.save(self.doc, normalized_toc, toc_options=dialog.result):
             self.bookmark_manager.set_toc(normalized_toc)
             self.refresh_tree()
             self.load_thumbnails()
